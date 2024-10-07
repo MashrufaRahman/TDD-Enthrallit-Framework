@@ -338,6 +338,7 @@ public class CommonAction {
 		element.sendKeys(file.getAbsolutePath());
 		pause(4000);
 	}
+
 	public static void clickElementThenTab(WebElement element) {
 		try {
 			element.sendKeys(Keys.TAB);

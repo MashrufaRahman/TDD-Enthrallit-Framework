@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import static common.CommonAction.*;
 
-
 import java.io.File;
 import java.util.List;
 import java.util.Set;
@@ -96,10 +95,10 @@ public class HomePage {
 
 	@FindBy(xpath = "//select[@id='id_course_wish_to_enroll']")
 	WebElement CourseWishToEnroll;
-	@FindBy(xpath = "//small[normalize-space(text())='Course Wish to Enroll is a required field.']")
+	@FindBy(xpath = "//small[text()='Course Wish to Enroll is a required field. ']")
 	WebElement courseWishToEnrollIsARequiredFieldErrorMessage;
-	//@FindBy(xpath = "//select[@name='course_wish_to_enroll']/option")
-	//List<WebElement> courseList;
+	// @FindBy(xpath = "//select[@name='course_wish_to_enroll']/option")
+	// List<WebElement> courseList;
 
 	@FindBy(xpath = "//input[@name='phone']")
 	WebElement phonNumber;
@@ -120,8 +119,8 @@ public class HomePage {
 	@FindBy(xpath = "//span[text()='Must be a valid Email Address.']")
 	WebElement mustBeAValidEmailAddressErrorMessagElement;
 	// how to make xpath for Max length
-	//@FindBy(xpath = "//input[@id='password']")
-	//WebElement password;
+	// @FindBy(xpath = "//input[@id='password']")
+	// WebElement password;
 	@FindBy(xpath = "//span[text()='Password is a required field.']")
 	WebElement passwordIsARequiredFieldErrorMessagElement;
 	@FindBy(xpath = "//span[text()='Must contain a minimum of 8 characters.']")
@@ -130,7 +129,10 @@ public class HomePage {
 	WebElement pleaseReferToPasswordRequirementsErrorMessagElement;
 	@FindBy(xpath = "//select[@name='gender']")
 	WebElement Gender;
-	
+	@FindBy(xpath = "//input[@name='image']")
+	WebElement personalImag;
+	@FindBy(xpath = "//input[@name='photo_id']")
+	WebElement photoId;
 	@FindBy(xpath = "//input[@name='home_address_line_1']")
 	WebElement HomeAddressLine1;
 	@FindBy(xpath = "//span[@id='home_address_error']")
@@ -163,7 +165,7 @@ public class HomePage {
 	List<WebElement> birthYearList;
 	@FindBy(xpath = "//select[@name='birth_month']")
 	WebElement birthMonth;
-	
+
 	@FindBy(xpath = "//select[@id='id_birth_date']")
 	WebElement birthDate;
 	@FindBy(xpath = "//select[@name='immigration_status']")
@@ -251,12 +253,6 @@ public class HomePage {
 	@FindBy(xpath = "//a[text()='Cancel']")
 	WebElement cancelButton;
 
-	// @FindBy(xpath = "//select[@name='i_am' and @class='form-control']")
-	// WebElement IamDd;
-	/*
-	 * public void clickLogo() { logo.click(); pause(4000); }
-	 */
-
 	public void clickLoginButton() {
 		elementDisplayed(logInFromToolbar);
 		// clickEliment(logInFromToolbar);
@@ -295,7 +291,9 @@ public class HomePage {
 	}
 
 	public void openApplicationAndSubmitButton() {
-		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
+		// pause(4000);
+		// driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
+		pause(4000);
 		inputText(fName, "Mashrufa");
 		pause(4000);
 		inputText(middleName, "Haque");
@@ -314,13 +312,9 @@ public class HomePage {
 		pause(4000);
 		selectDropdown(Gender, "Female");
 		pause(4000);
-		File pi = new File("./image/personalImage.jpg");
-		WebElement personalImage = driver.findElement(By.xpath("//input[@name='image']"));
-		personalImage.sendKeys(pi.getAbsolutePath());
+		uploadPhotoImage(personalImag, "./image/personalImage.png");
 		pause(4000);
-		File phid = new File("./image/photoId.png");
-		WebElement photoId = driver.findElement(By.xpath("//input[@name='photo_id']"));
-		photoId.sendKeys(phid.getAbsolutePath());
+		uploadPhotoImage(photoId, "./image/photoId.png");
 		pause(4000);
 		selectDropdown(birthYear, "1960");
 		pause(4000);
@@ -360,7 +354,7 @@ public class HomePage {
 		// use alert here
 		selectAgreeButton.click();
 		pause(4000);
-		clickElement(submit);
+		// clickElement(submit);
 		clickElement(submit);
 		pause(4000);
 		validationOfHeader(registrationSuccessfulHeader, "Registration Successful!");
@@ -370,13 +364,6 @@ public class HomePage {
 		verifyCurrentUrl(driver, "https://enthrallit.com/course/enroll/success/");
 		pause(4000);
 
-		/*
-		 * validationOfHeader(mainTitleAutomation, "Automation"); pause(4000);
-		 * //verifyCurrentUrl(driver,
-		 * "https://enthrallit.com/dashboard/dashboard/automation/");
-		 * verifyCurrentUrl(driver, "https://enthrallit.com/course/enroll/success/");
-		 * pause(4000);
-		 */
 	}
 
 	public void openApplicationPageClickBackButton() {
@@ -386,30 +373,17 @@ public class HomePage {
 		pause(4000);
 		clickElement(backButton);
 		pause(4000);
-		// verifyCurrentUrl(driver,
-		// "https://enthrallit.com/accounts/login/?next=/dashboard/");
 		verifyCurrentUrl(driver, "https://enthrallit.com/dashboard/dashboard/automation/");
 	}
 
 	public void openApplicationPageClickCancelButton() {
-		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
+		// driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
 		pause(4000);
 		scrollIntoViewTheElementUsingJavascriptExecutor(driver, submit);
 		clickElement(cancelButton);
 		pause(4000);
 		verifyCurrentUrl(driver, "https://enthrallit.com/accounts/login/?next=/dashboard/");
 	}
-
-	/*
-	 * Test: scroll, then click back button, validate the header, title, current url
-	 * Method name: clickOnBacklButtonNavigateToEnrollNowPage
-	 * 
-	 * Test: scroll, then click cancel button, validate the header, title, current
-	 * url Method name: clickOnCancelButtonNavigateToDashboad
-	 * 
-	 * Test: scroll, then click submit button, validate the error message under all
-	 * fields Method name: clickOnSubmitButtonWithoutAnyData
-	 */
 
 	public void inputDataInTheFields() {
 		validationOfHeader(enrollHeader, "Select your course from the dropdown");
@@ -572,12 +546,13 @@ public class HomePage {
 		pause(4000);
 		clickElementThenTab(iAm); // This common action is used only here
 		pause(3000);
-		verifyErrorMessageUnderTheField(iAmIsARequiredFieldErrorMessage,
-		 Attribute.INNER_HTML, "I'm is a required field.");
-		 pause(4000);
+		verifyErrorMessageUnderTheField(iAmIsARequiredFieldErrorMessage, Attribute.INNER_HTML,
+				"I'm is a required field.");
+		pause(4000);
 		selectDropdown(iAm, "a Student");
 		pause(4000);
 	}
+
 	// did not run
 	public void courseWishToEnrollValidation() {
 		pause(4000);
@@ -588,17 +563,17 @@ public class HomePage {
 		pause(4000);
 		selectDropdown(course, "Python");
 		pause(4000);
-		//selectElelementFromDropdownOnebyOne(CourseWishToEnroll, courseList);
-		//pause(3000);
+		// selectElelementFromDropdownOnebyOne(CourseWishToEnroll, courseList);
+		// pause(3000);
 		selectDropdown(course, "Select Course");
 		pause(4000);
 		clickElementThenTab(course);
 		pause(4000);
-		 verifyErrorMessageUnderTheField(courseWishToEnrollIsARequiredFieldErrorMessage,
-		 Attribute.INNER_HTML, "Course Wish to Enroll is a required field.");
-		 pause(4000);
-		 selectDropdown(course, "Python");
-			pause(4000);
+		verifyErrorMessageUnderTheField(courseWishToEnrollIsARequiredFieldErrorMessage, Attribute.INNER_HTML,
+				"Course Wish to Enroll is a required field.");
+		pause(4000);
+		selectDropdown(course, "Python");
+		pause(4000);
 
 	}
 
@@ -648,6 +623,7 @@ public class HomePage {
 				"Must be a valid Email Address.");
 		pause(4000);
 	}
+
 	public void passwordValidation() {
 		pause(4000);
 		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
@@ -656,56 +632,60 @@ public class HomePage {
 		pause(4000);
 		inputTextThenClickTab(password, " ");
 		pause(4000);
-		verifyErrorMessageUnderTheField(passwordIsARequiredFieldErrorMessagElement, Attribute.INNER_HTML,"Password is a required field.");
+		verifyErrorMessageUnderTheField(passwordIsARequiredFieldErrorMessagElement, Attribute.INNER_HTML,
+				"Password is a required field.");
 		pause(4000);
 		inputTextThenClickTab(password, "1234567");
 		pause(4000);
-		verifyErrorMessageUnderTheField(mustContainAMinimumOf8CharactersErrorMessag, Attribute.INNER_HTML, "Must contain a minimum of 8 characters.");
+		verifyErrorMessageUnderTheField(mustContainAMinimumOf8CharactersErrorMessag, Attribute.INNER_HTML,
+				"Must contain a minimum of 8 characters.");
 		pause(4000);
 		clearTextFromTheField(password);
 		inputTextThenClickTab(password, "123456789");
 		pause(4000);
-		verifyErrorMessageUnderTheField(pleaseReferToPasswordRequirementsErrorMessagElement, Attribute.INNER_HTML, "Please refer to Password requirements.");
+		verifyErrorMessageUnderTheField(pleaseReferToPasswordRequirementsErrorMessagElement, Attribute.INNER_HTML,
+				"Please refer to Password requirements.");
 		pause(4000);
 		clearTextFromTheField(password);
 		inputTextThenClickTab(password, "As1@");
 		pause(4000);
-		verifyErrorMessageUnderTheField(mustContainAMinimumOf8CharactersErrorMessag, Attribute.INNER_HTML, "Must contain a minimum of 8 characters.");
+		verifyErrorMessageUnderTheField(mustContainAMinimumOf8CharactersErrorMessag, Attribute.INNER_HTML,
+				"Must contain a minimum of 8 characters.");
 		pause(4000);
 		clearTextFromTheField(password);
 		inputTextThenClickTab(password, "Mashrufa");
 		pause(4000);
-		verifyErrorMessageUnderTheField(pleaseReferToPasswordRequirementsErrorMessagElement, Attribute.INNER_HTML, "Please refer to Password requirements.");
+		verifyErrorMessageUnderTheField(pleaseReferToPasswordRequirementsErrorMessagElement, Attribute.INNER_HTML,
+				"Please refer to Password requirements.");
 		pause(4000);
 		clearTextFromTheField(password);
 		inputTextThenClickTab(password, "12345678");
 		pause(4000);
 
 	}
+
 	public void genderValidation() {
-		pause(4000);
-		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
-		pause(4000);
 		selectDropdown(Gender, "Male");
 		pause(4000);
 		clearTextFromTheField(Gender);
 		pause(4000);
 	}
 
-	/*
-	 * Middle Name validation Last Name validation every field should be evaluated
-	 * according to requirement
-	 */
+	public void personalImageValidation() {
+		pause(4000);
+		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
+		File pi = new File("./image/personalImage.png");
+		personalImag.sendKeys(pi.getAbsolutePath());
+		pause(4000);
+	}
 
-	/*
-	 * public void use_of_dropdown_selectByValue() { //pause(4000);
-	 * clickLoginButton();
-	 * driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
-	 * driver.manage().timeouts().implicitlyWait(Duration.ofMillis(3000));
-	 * driver.manage().timeouts().pageLoadTimeout(Duration.ofMillis(3000)); select =
-	 * new Select(IAm); select.selectByValue("Student"); pause(4000);
-	 * //https://enthrallit.com/course/dashboard/enrolls/ }
-	 */
+	public void photoIdValidation() {
+		pause(4000);
+		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
+		File pi = new File("./image/photoId.png");
+		photoId.sendKeys(pi.getAbsolutePath());
+		pause(4000);
+	}
 
 	public void use_of_dropdown_selectByValue() {
 		select = new Select(iAm);
@@ -725,12 +705,6 @@ public class HomePage {
 		select.selectByVisibleText("1960");
 		pause(4000);
 
-	}
-
-	public void personalImageValidation() {
-		File pi = new File("./image/personal image.jpg");
-		WebElement personalImage = driver.findElement(By.xpath("//input[@name='image']"));
-		personalImage.sendKeys(pi.getAbsolutePath());
 	}
 
 	public void dropDownValidation() {
@@ -820,7 +794,9 @@ public class HomePage {
 	}
 
 	public void enrolementPageErrorMessageValidation() {
-		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
+		// driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
+		scrollIntoViewTheElementUsingJavascriptExecutor(driver, submit);
+		pause(4000);
 		submit.click();
 		pause(4000);
 		verifyErrorMessageUnderTheField(firstNameIsARequiredFieldErrorMesssage, Attribute.INNER_HTML,
@@ -836,7 +812,7 @@ public class HomePage {
 				"I'm is a required field.");
 		pause(4000);
 		verifyErrorMessageUnderTheField(courseWishToEnrollIsARequiredFieldErrorMessage, Attribute.INNER_HTML,
-				"Course Wish to Enroll is a required field.");
+				"Course Wish to Enroll is a required field. ");
 		pause(4000);
 		// verifyErrorMessageUnderTheField(phoneNumberIsARequiredFieldErrorMessage,
 		// Attribute.INNER_HTML,
