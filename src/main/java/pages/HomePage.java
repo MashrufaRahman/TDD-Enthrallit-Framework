@@ -13,11 +13,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Set;
 
-import javax.xml.xpath.XPath;
-
 import constants.Attribute;
-import freemarker.core.ParsingNotSupportedException;
-
 public class HomePage {
 
 	WebDriver driver;
@@ -53,53 +49,34 @@ public class HomePage {
 
 	@FindBy(xpath = "//input[@name='f_name']")
 	WebElement fName;
-
 	@FindBy(xpath = "//input[@id='id_m_name']")
 	WebElement middleName;
-
-	// @FindBy(xpath = "//small[contains(text(), 'alphabetic')]")
-	// WebElement mustBeAlphabeticCharactersErrorMessage;
-
 	@FindBy(xpath = "//small[contains(text(), 'First Name is a required field.')]")
 	WebElement firstNameIsARequiredFieldErrorMesssage;
 	@FindBy(xpath = "//small[text()='Must be alphabetic characters.']")
 	WebElement firstNameMustBeAlphabeticCharacterErrorMessagElement;
-	// @FindBy(xpath = "//small[@id='f_name_error']")
-	// WebElement firstNameMustBeAlphabeticCharactersErrorMessage;
-
-	// @FindBy(xpath = "//input[@id='id_m_name']")
-	// WebElement middleName;
-
 	@FindBy(xpath = "//small[text()='Must be alphabetic characters.']")
 	WebElement middleNameMustBeAlphabeticCharactersErrorMessag;
 	@FindBy(xpath = "//small[text()='Must be alphabetic characters.']")
 	WebElement middleNameErrorMessage;
-
 	@FindBy(xpath = "//input[@name='l_name']")
 	WebElement lName;
 	@FindBy(xpath = "//small[text()='Last Name is a required field.']")
 	WebElement lastNameIsARequiredFieldErrorMessage;
 	@FindBy(xpath = "//small[text()='Must be alphabetic characters.']")
 	WebElement lastNameMustBeAlphabeticCharactersErronMessage;
-
 	@FindBy(xpath = "//select[@name = 'i_am']")
 	WebElement iAm;
 	@FindBy(xpath = "//small[@id='i_am_error']")
 	WebElement iAmIsARequiredFieldErrorMessage;
-
 	@FindBy(xpath = "//select[@name='i_am']/option")
 	List<WebElement> iAmList;
-
 	@FindBy(xpath = "//select[@name='course_wish_to_enroll']")
 	WebElement course;
-
 	@FindBy(xpath = "//select[@id='id_course_wish_to_enroll']")
 	WebElement CourseWishToEnroll;
 	@FindBy(xpath = "//small[text()='Course Wish to Enroll is a required field. ']")
 	WebElement courseWishToEnrollIsARequiredFieldErrorMessage;
-	// @FindBy(xpath = "//select[@name='course_wish_to_enroll']/option")
-	// List<WebElement> courseList;
-
 	@FindBy(xpath = "//input[@name='phone']")
 	WebElement phonNumber;
 	@FindBy(xpath = "//small[text()='Phone Number is a required field.']")
@@ -114,13 +91,8 @@ public class HomePage {
 	WebElement emailAddress;
 	@FindBy(xpath = "//span[text()='Email Address is a required field.']")
 	WebElement emailAddressIsARequiredFieldErrorMessag;
-	// @FindBy(xpath = "//input[@name='email']")
-	// WebElement emailAddressErrorMessag;
 	@FindBy(xpath = "//span[text()='Must be a valid Email Address.']")
 	WebElement mustBeAValidEmailAddressErrorMessagElement;
-	// how to make xpath for Max length
-	// @FindBy(xpath = "//input[@id='password']")
-	// WebElement password;
 	@FindBy(xpath = "//span[text()='Password is a required field.']")
 	WebElement passwordIsARequiredFieldErrorMessagElement;
 	@FindBy(xpath = "//span[text()='Must contain a minimum of 8 characters.']")
@@ -139,24 +111,18 @@ public class HomePage {
 	WebElement HomeAddressLine1IsARequiredFieldErrorMessage;
 	@FindBy(xpath = "//span[@id='home_address_error']")
 	WebElement mustBeAlphanumericCharactersErrorMessagElement;
-
 	@FindBy(xpath = "//input[@name='home_address_line_2']")
 	WebElement HomeAddressLine2;
-
 	@FindBy(xpath = "//input[@name='city']")
 	WebElement city;
-
 	@FindBy(xpath = "//select[@id='id_state']")
 	WebElement state;
 	@FindBy(xpath = "//select[@id='id_state']")
 	List<WebElement> listOfState;
-
 	@FindBy(xpath = "//input[@name='zip_code']")
 	WebElement zipCode;
-
 	@FindBy(xpath = "//input[@name='emergency_contact']")
 	WebElement emergencyContract;
-
 	@FindBy(xpath = "//input[@name='sign_by_name']")
 	WebElement Signature;
 	@FindBy(xpath = "//select[@name='birth_year']")
@@ -165,7 +131,6 @@ public class HomePage {
 	List<WebElement> birthYearList;
 	@FindBy(xpath = "//select[@name='birth_month']")
 	WebElement birthMonth;
-
 	@FindBy(xpath = "//select[@id='id_birth_date']")
 	WebElement birthDate;
 	@FindBy(xpath = "//select[@name='immigration_status']")
@@ -208,14 +173,8 @@ public class HomePage {
 	WebElement enrollOtherHeader;
 	@FindBy(xpath = "//input[@id='is_agree']")
 	WebElement selectAgreeButton;
-
 	@FindBy(xpath = "//small[text()='Must be alphabetic characters.']")
 	WebElement mustBeAlphabeticCharactersErrorMessag3;
-	// @FindBy(xpath = "//select[@id='id_i_am']")
-	// WebElement iAmIsARequiredFieldErrorMessage;
-
-	// @FindBy(xpath = "//input[@id='id_phone']")
-	// WebElement phoneNumberIsARequiredFieldErrorMessage;
 	@FindBy(xpath = "//input[@name='image']")
 	WebElement personalmageIsARequiredFieldErrorMessage;
 	@FindBy(xpath = "//span[text()='Photo Id is a required field.']")
@@ -234,16 +193,12 @@ public class HomePage {
 	WebElement stateIsARequiredFieldErrorMessage;
 	@FindBy(xpath = "//span[text()='Must be alphabetic characters.']")
 	WebElement mustBeAlphabeticCharactersErrorMessage;
-
 	@FindBy(xpath = "//span[text()='Signature is a required field.']")
 	WebElement signatureIsARequiredFieldErrorMessage;
-
 	@FindBy(xpath = "//button[@id='submit_button']")
 	WebElement submit;
-
 	@FindBy(xpath = "//h1[text()='Registration Successful!']")
 	WebElement registrationSuccessfulHeader;
-
 	@FindBy(xpath = "//p[contains(text(), 'Thank you ')]")
 	WebElement registrationSuccessfulMessage;
 	@FindBy(xpath = "//h1[text()='Automation']")
@@ -252,7 +207,7 @@ public class HomePage {
 	WebElement backButton;
 	@FindBy(xpath = "//a[text()='Cancel']")
 	WebElement cancelButton;
-
+	
 	public void clickLoginButton() {
 		elementDisplayed(logInFromToolbar);
 		// clickEliment(logInFromToolbar);
@@ -425,7 +380,6 @@ public class HomePage {
 		pause(4000);
 		scrollIntoViewTheElementUsingJavascriptExecutor(driver, submit);
 		pause(4000);
-
 		HomeAddressLine1.sendKeys("709 North Oks Blvd");
 		pause(3000);
 		HomeAddressLine2.sendKeys("70 Tennyson Rd");
@@ -438,7 +392,6 @@ public class HomePage {
 		pause(3000);
 		selectDropdown(ImmigrationStatus, "Citizen");
 		pause(4000);
-		// selectDropdown(DateOfArrival, "08-27-2024");
 		DateOfArrival.sendKeys("08/03/2024");
 		pause(4000);
 		emergencyContract.sendKeys("Adam phone number 609-555-8246");
@@ -533,10 +486,7 @@ public class HomePage {
 		pause(4000);
 	}
 
-	// test didn't run
-	// check error message validation
-	// Attribute inner-html is not showing 1 of 1
-	public void iAmDropDownValidation() {
+		public void iAmDropDownValidation() {
 		pause(4000);
 		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
 		pause(4000);
@@ -563,8 +513,6 @@ public class HomePage {
 		pause(4000);
 		selectDropdown(course, "Python");
 		pause(4000);
-		// selectElelementFromDropdownOnebyOne(CourseWishToEnroll, courseList);
-		// pause(3000);
 		selectDropdown(course, "Select Course");
 		pause(4000);
 		clickElementThenTab(course);
@@ -814,10 +762,6 @@ public class HomePage {
 		verifyErrorMessageUnderTheField(courseWishToEnrollIsARequiredFieldErrorMessage, Attribute.INNER_HTML,
 				"Course Wish to Enroll is a required field. ");
 		pause(4000);
-		// verifyErrorMessageUnderTheField(phoneNumberIsARequiredFieldErrorMessage,
-		// Attribute.INNER_HTML,
-		// "Phone Number is a required field.");
-		pause(4000);
 		verifyErrorMessageUnderTheField(emailAddressIsARequiredFieldErrorMessag, Attribute.INNER_HTML,
 				"Email Address is a required field.");
 		pause(4000);
@@ -829,7 +773,6 @@ public class HomePage {
 		pause(4000);
 		verifyErrorMessageUnderTheField(birthYearIsARequiredFieldErrorMessage, Attribute.INNER_HTML,
 				"Birth Year is a required field.");
-
 	}
 
 	public void use_of_navigate_method() {
