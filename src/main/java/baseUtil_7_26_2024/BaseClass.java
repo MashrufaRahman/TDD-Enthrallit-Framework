@@ -41,6 +41,7 @@ public class BaseClass {
 	public void initialReporting() {
 		extentReports = ExtentReportManager.initialReports();
 	}
+
 	@BeforeClass
 	public void beforeClassSetUp() {
 		configuration = new Configuration();
@@ -54,7 +55,7 @@ public class BaseClass {
 	}
 
 	@BeforeMethod
-	public void setup(@Optional(CHROME)String browserName) {
+	public void setup(@Optional(CHROME) String browserName) {
 		this.browserName = browserName;
 		initDriver(browserName);
 		driver.manage().window().maximize();
@@ -70,20 +71,22 @@ public class BaseClass {
 	}
 
 	public void initDriver(String browserName) {
-		//String browserName = configuration.getProperties(BROWSER);
+		// String browserName = configuration.getProperties(BROWSER);
 		switch (browserName) {
 		case CHROME:
 			System.setProperty("webDriver.chrome.driver", "./driver/chromedriver.exe");
 			driver = new ChromeDriver();
 			break;
-		case FIREFOX:
-			System.setProperty("webdriver.gecko.driver", "./driver/geckodriver.exe");
-			driver = new FirefoxDriver();
-			break;
 		case EDGE:
 			System.setProperty("webdriver.edge.driver", "./driver/msedgedriver.exe");
 			driver = new EdgeDriver();
 			break;
+
+		case FIREFOX:
+			System.setProperty("webdriver.gecko.driver", "./driver/geckodriver.exe");
+			driver = new FirefoxDriver();
+			break;
+
 		default:
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
@@ -94,12 +97,11 @@ public class BaseClass {
 
 	public void initClass() {
 		homePage = new HomePage(driver);
-		// configuration = new Configuration();
 	}
 
 	@AfterMethod
 	public void tearUp() {
-		// driver.quit();
+		driver.quit();
 	}
 
 	@AfterMethod
