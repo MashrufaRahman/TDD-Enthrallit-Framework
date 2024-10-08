@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import constants.Attribute;
+
 public class HomePage {
 
 	WebDriver driver;
@@ -175,13 +176,14 @@ public class HomePage {
 	WebElement selectAgreeButton;
 	@FindBy(xpath = "//small[text()='Must be alphabetic characters.']")
 	WebElement mustBeAlphabeticCharactersErrorMessag3;
-	@FindBy(xpath = "//input[@name='image']")
+	@FindBy(xpath = "//span[text()='Personal Image is a required field.']")
 	WebElement personalmageIsARequiredFieldErrorMessage;
+
 	@FindBy(xpath = "//span[text()='Photo Id is a required field.']")
 	WebElement photoIdIsARequiredFieldErrorMessage;
-	@FindBy(xpath = "//select[@id='id_birth_year']")
+	@FindBy(xpath = "//span[text()='Birth Year is a required field.']")
 	WebElement birthYearIsARequiredFieldErrorMessage;
-	@FindBy(xpath = "//select[@id='id_birth_month']")
+	@FindBy(xpath = "//span[text()='Birth Month is a required field.']")
 	WebElement birthMonthIsARequiredFieldErrorMessage;
 	@FindBy(xpath = "//span[text()='Birth Date is a required field.']")
 	WebElement birthDateIsARequiredFieldErrorMessage;
@@ -207,7 +209,7 @@ public class HomePage {
 	WebElement backButton;
 	@FindBy(xpath = "//a[text()='Cancel']")
 	WebElement cancelButton;
-	
+
 	public void clickLoginButton() {
 		elementDisplayed(logInFromToolbar);
 		// clickEliment(logInFromToolbar);
@@ -486,7 +488,7 @@ public class HomePage {
 		pause(4000);
 	}
 
-		public void iAmDropDownValidation() {
+	public void iAmDropDownValidation() {
 		pause(4000);
 		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
 		pause(4000);
@@ -742,7 +744,7 @@ public class HomePage {
 	}
 
 	public void enrolementPageErrorMessageValidation() {
-		// driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
+		driver.navigate().to("https://enthrallit.com/course/dashboard/enrolls/");
 		scrollIntoViewTheElementUsingJavascriptExecutor(driver, submit);
 		pause(4000);
 		submit.click();
